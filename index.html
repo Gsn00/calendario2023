@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário 2023</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <script src="jquery.js"></script>
+</head>
+<body>
+    
+    <section class="main">
+        <div class="container">
+        </div>
+    </section>
+
+    <script>
+        var getDayFromNumber = function(year, month, day) {
+            const daysOfWeek = ['Domingo', 'Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta', 'Sabado']
+            return daysOfWeek[new Date(year, month, 1).getDay()];
+        }
+
+        var createMonth = function(year, month, monthName) {
+            var monthStartsAt = new Date(year, month - 1, 1).getDay();
+            const days = new Date(year, month, 0).getDate();
+            var day = 1;
+
+            $(`
+                <div id="`+monthName+`-`+year+`" class="month">
+                <div class="div-table">
+                    <h2>`+monthName+` `+year+`</h2>
+                    <table class="tb-calendar">
+                        <thead>
+                            <tr>
+                                <td>D</td>
+                                <td>S</td>
+                                <td>T</td>
+                                <td>Q</td>
+                                <td>Q</td>
+                                <td>S</td>
+                                <td>S</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div class="create-annotation">
+                        <div class="selectedDaysContainer">
+                            <h5 class="txtSelectedDays">Dias selecionados:</h5>
+                            <div class="selectedDays"></div>
+                        </div>
+                        <textarea class="annotationText" type="text" placeholder="Nova anotação..."></textarea>
+                        <h4>Escolha uma cor</h4>
+                        <div class="colors">
+                            <button class="colorBtn" id="red"></button>
+                            <button class="colorBtn" id="blue"></button>
+                            <button class="colorBtn" id="purple"></button>
+                            <button class="colorBtn" id="orange"></button>
+                            <button class="colorBtn" id="green"></button>
+                        </div>
+                        <button monthId="`+monthName+`-`+year+`" class="create-button">Criar</button>
+                    </div>
+                </div>
+                    <div class="tb-todo"></div>
+                </div>
+            `).appendTo($('.main .container'));
+
+            for (let i=0; i<6; i++) {
+                $(`<tr></tr>`).appendTo($('#'+monthName+'-'+year+' .tb-calendar tbody'));
+
+                for (let y=0; y<7; y++) {
+                    if (day <= days) {
+                        if (i==0) {
+                            if (monthStartsAt == 0) {
+                                $(`<td day="`+day+`">`+day+`</td>`).appendTo($('#'+monthName+'-'+year+' .tb-calendar tbody tr').get(i))
+                                day++;
+                            } else {
+                                $(`<td invalidDay></td>`).appendTo($('#'+monthName+'-'+year+' .tb-calendar tbody tr').get(i))
+                                monthStartsAt -= 1;
+                            }
+                        } else {
+                            $(`<td day="`+day+`">`+day+`</td>`).appendTo($('#'+monthName+'-'+year+' .tb-calendar tbody tr').get(i))
+                            day++;
+                        }
+                    }
+                }
+            }
+        }
+
+        createMonth(2023, 9, 'Setembro')
+        createMonth(2023, 10, 'Outubro')
+        createMonth(2023, 11, 'Novembro')
+        createMonth(2023, 12, 'Dezembro')
+
+        var selectedDays = new Map()
+
+        $('body').on('click', '.tb-calendar tbody td', (event)=>{
+            const clickedDay = $(event.target)
+            const day = clickedDay.text()
+            const month = clickedDay.closest('.month')
+            const monthId = month.attr('id')
+            const mapMonthKey = monthId+'-'+day
+
+            if (selectedDays.has(mapMonthKey)) {
+                clickedDay.css('outline', '0')
+                selectedDays.delete(mapMonthKey);
+                month.find('.selectedDays [day='+day+']').remove()
+            } else {
+                clickedDay.css('outline', '2px solid #404040')
+                selectedDays.set(mapMonthKey, true);
+                $(`<div day="`+day+`" class="selectedDay">`+day+`</div>`).appendTo(month.find('.selectedDays'))
+            }
+
+        })
+
+        $('body').on('click', '.month .colorBtn', (event) => {
+            const clickedBtn = $(event.target)
+
+            if (clickedBtn.attr('selected')) {
+                clickedBtn.removeAttr('selected')
+                clickedBtn.css('border', '0').css('outline', '0')
+            } else {
+                clickedBtn.attr('selected', true)
+                clickedBtn.css('border', '2px solid white').css('outline', '2px solid #404040')
+            }
+        })
+
+        $('body').on('click', '.month .create-button', (event)=>{
+            const clickedBtn = $(event.target)
+            const monthId = clickedBtn.attr('monthId')
+            const month = $('.month#'+monthId)
+            const daysOfMonth = month.find('.tb-calendar tbody td')
+            var days = month.find('.selectedDays div')
+            var textarea = month.find('.annotationText')
+            var colors = month.find('.colors')
+
+            var dayList = [];
+            var dayText = '';
+
+            days.each(function(index) {
+                dayList.push($(this).attr('day'))
+            })
+            dayList.sort(function(a, b) {return a - b;});
+
+            if (dayList.length > 1) {
+                for (var i=0; i<dayList.length; i++) {
+                    if (i != dayList.length - 1) {
+                        dayText += dayList[i]+', ';
+                    } else {
+                        dayText += dayList[i]
+                    }
+                }
+            } else {
+                dayText = dayList[0]
+            }
+
+            var colorList = []
+            var colorText = '';
+
+            colors.find('.colorBtn').each(function(index) {
+                const color = $(this)
+                if (color.attr('selected')) {
+                    colorList.push(color.attr('id'))
+                }
+            })
+
+            for (var i=0; i<colorList.length; i++) {
+                if (i != colorList.length - 1) {
+                    colorText += colorList[i]+', ';
+                } else {
+                    colorText += colorList[i]
+                }
+            }
+
+            const id = Math.random().toString(16).slice(2);
+            createNewAnnotation(month, dayText, textarea.val(), colorText, id)
+            saveAnnotation(monthId, id, colorText, dayText, textarea.val())
+
+            textarea.val('');
+            daysOfMonth.each(function(index) {
+                $(this).css('outline', '0')
+            })
+            colors.find('button').each(function(index) {
+                $(this).css('border', '0').css('outline', '0')
+                $(this).removeAttr('selected')
+            })
+            selectedDays.clear()
+            month.find('.selectedDays').html('');
+        })
+
+        var createNewAnnotation = function(month, days, text, colors, id) {
+            $(`
+                <div id="`+id+`" colors="`+colors+`" class="annotation">
+                    <h3>`+days+`</h3>
+                    <p>`+text+`</p>
+                    <button class="deleteAnnotation">X</button>
+                </div>
+            `).appendTo(month.find('.tb-todo'))
+            
+            colors = colors.split(', ')
+            if (colors.length > 0 && colors[0] != '') {
+                colors.forEach(color => {
+                    switch (color) {
+                        case 'red':
+                            $('<span id="red">(Recesso Acadêmico e Administrativo)</span>').appendTo('.annotation[id='+id+']')
+                            break;
+                        case 'blue':
+                            $('<span id="blue">(Cursos Presenciais)</span>').appendTo('.annotation[id='+id+']')
+                            break;
+                        case 'purple':
+                            $('<span id="purple">(Cursos EaD)</span>').appendTo('.annotation[id='+id+']')
+                            break;
+                        case 'orange':
+                            $('<span id="orange">(Recesso Acadêmico)</span>').appendTo('.annotation[id='+id+']')
+                            break;
+                        case 'green':
+                            $('<span id="green">(Atividades Acadêmicas e Administrativas)</span>').appendTo('.annotation[id='+id+']')
+                            break;
+                    }
+                });
+            }
+
+            refreshCalendar(month)
+        }
+    $('body').on('click', '.deleteAnnotation', (event) => {
+        const clickedBtn = $(event.target)
+        const annotationId = clickedBtn.closest('.annotation').attr('id')
+        deleteAnnotation(annotationId)
+    })
+
+    var refreshCalendar = function(month) {
+        const calendar = month.find('.tb-calendar')
+        var annotations = month.find('.annotation')
+
+        annotations.each(function(index) {
+            const annotation = $(this)
+            const days = annotation.find('h3').text().split(', ')
+            const colors = annotation.attr('colors').split(', ')
+            days.forEach(day => {
+                var td = calendar.find('tbody td[day='+day+']')
+                td.css('font-weight', 'bold').css('border', '2px solid #404040')
+
+                if (colors.length > 0 && colors[0] != '') {
+                    td.css('color', 'white')
+                    var color = '';
+
+                    switch (colors[0]) {
+                        case 'red':
+                            color = '#ef5350';
+                            break;
+                        case 'blue':
+                            color = '#5c6bc0';
+                            break;
+                        case 'purple':
+                            color = '#ab47bc';
+                            break;
+                        case 'orange':
+                            color = '#ff9800';
+                            break;
+                        case 'green':
+                            color = '#4caf50';
+                            break;
+                    }
+                    td.css('background-color', color)
+                }
+            });
+        })
+    }
+
+    var refreshAllCalendars = function() {
+        $('.month').each(function(index) {
+            const month = $(this)
+            refreshCalendar(month)
+        })
+    }
+    refreshAllCalendars()
+
+    var saveAnnotation = function(monthId, annotationId, colors, days, text) {
+        var annotation = {
+            'monthId': monthId,
+            'annotationId': annotationId,
+            'colors': colors,
+            'days': days,
+            'text': text
+        }
+        localStorage.setItem(annotationId, JSON.stringify(annotation))
+    }
+
+    var loadAnnotations = function() {
+        for (var i = 0; i < localStorage.length; i++){
+            var annotation = JSON.parse(localStorage.getItem(localStorage.key(i)))
+            
+            createNewAnnotation(
+                $('.month#'+annotation['monthId']),
+                annotation['days'],
+                annotation['text'],
+                annotation['colors'],
+                annotation['annotationId'])
+        }
+        
+    }
+    loadAnnotations()
+
+    var deleteAnnotation = function(annotationId) {
+        const annotation = $('.annotation#'+annotationId)
+        annotation.remove()
+        localStorage.removeItem(annotationId)
+        location.reload()
+    }
+
+    </script>
+</body>
+</html>
