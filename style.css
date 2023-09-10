@@ -151,7 +151,8 @@ body {
             height: 25px;
             border: 0;
             border-radius: 50%;
-            cursor: pointer; }
+            cursor: pointer;
+            position: relative; }
             .main .month .div-table .create-annotation .colors button#red {
               background-color: #ef5350;
               box-shadow: 0px 0px 5px #ef5350; }
@@ -173,6 +174,35 @@ body {
             .main .month .div-table .create-annotation .colors button#yellow {
               background-color: #e2ce18;
               box-shadow: 0px 0px 5px #e2ce18; }
+            .main .month .div-table .create-annotation .colors button tooltip {
+              visibility: hidden;
+              width: 120px;
+              background-color: #555;
+              color: #fff;
+              text-align: center;
+              padding: 5px 0;
+              border-radius: 6px;
+              /* Position the tooltip text */
+              position: absolute;
+              z-index: 1;
+              bottom: 125%;
+              left: 50%;
+              margin-left: -60px;
+              /* Fade in tooltip */
+              opacity: 0;
+              transition: opacity 0.3s; }
+            .main .month .div-table .create-annotation .colors button tooltip::after {
+              content: "";
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              margin-left: -5px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: #555 transparent transparent transparent; }
+            .main .month .div-table .create-annotation .colors button:hover tooltip {
+              visibility: visible;
+              opacity: 1; }
       .main .month .div-table table {
         padding: 15px;
         background-color: white;
