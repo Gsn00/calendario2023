@@ -62,14 +62,20 @@ body {
                     &#blue {
                         color: #5c6bc0;
                     }
-                    &#purple {
-                        color: #ab47bc;
+                    &#pink {
+                        color: #f06292;
                     }
                     &#orange {
                         color: #ff9800;
                     }
                     &#green {
                         color: #4caf50;
+                    }
+                    &#lilac {
+                        color: #d1c4e9;
+                    }
+                    &#yellow {
+                        color: #ffeb3b;
                     }
                 }
                 .deleteAnnotation {
@@ -191,9 +197,9 @@ body {
                             background-color: #5c6bc0;
                             box-shadow: 0px 0px 5px #5c6bc0;
                         }
-                        &#purple {
-                            background-color: #ab47bc;
-                            box-shadow: 0px 0px 5px #ab47bc;
+                        &#pink {
+                            background-color: #f06292;
+                            box-shadow: 0px 0px 5px #f06292;
                         }
                         &#orange {
                             background-color: #ff9800;
@@ -202,6 +208,14 @@ body {
                         &#green {
                             background-color: #4caf50;
                             box-shadow: 0px 0px 5px #4caf50;
+                        }
+                        &#lilac {
+                            background-color: #d1c4e9;
+                            box-shadow: 0px 0px 5px #d1c4e9;
+                        }
+                        &#yellow {
+                            background-color: #ffeb3b;
+                            box-shadow: 0px 0px 5px #ffeb3b;
                         }
                     }
                 }

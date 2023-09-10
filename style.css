@@ -50,12 +50,16 @@ body {
             color: #ef5350; }
           .main .month .tb-todo .annotation span#blue {
             color: #5c6bc0; }
-          .main .month .tb-todo .annotation span#purple {
-            color: #ab47bc; }
+          .main .month .tb-todo .annotation span#pink {
+            color: #f06292; }
           .main .month .tb-todo .annotation span#orange {
             color: #ff9800; }
           .main .month .tb-todo .annotation span#green {
             color: #4caf50; }
+          .main .month .tb-todo .annotation span#lilac {
+            color: #d1c4e9; }
+          .main .month .tb-todo .annotation span#yellow {
+            color: #ffeb3b; }
         .main .month .tb-todo .annotation .deleteAnnotation {
           width: 20px !important;
           height: 20px !important;
@@ -154,15 +158,21 @@ body {
             .main .month .div-table .create-annotation .colors button#blue {
               background-color: #5c6bc0;
               box-shadow: 0px 0px 5px #5c6bc0; }
-            .main .month .div-table .create-annotation .colors button#purple {
-              background-color: #ab47bc;
-              box-shadow: 0px 0px 5px #ab47bc; }
+            .main .month .div-table .create-annotation .colors button#pink {
+              background-color: #f06292;
+              box-shadow: 0px 0px 5px #f06292; }
             .main .month .div-table .create-annotation .colors button#orange {
               background-color: #ff9800;
               box-shadow: 0px 0px 5px #ff9800; }
             .main .month .div-table .create-annotation .colors button#green {
               background-color: #4caf50;
               box-shadow: 0px 0px 5px #4caf50; }
+            .main .month .div-table .create-annotation .colors button#lilac {
+              background-color: #d1c4e9;
+              box-shadow: 0px 0px 5px #d1c4e9; }
+            .main .month .div-table .create-annotation .colors button#yellow {
+              background-color: #ffeb3b;
+              box-shadow: 0px 0px 5px #ffeb3b; }
       .main .month .div-table table {
         padding: 15px;
         background-color: white;

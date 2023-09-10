@@ -58,9 +58,11 @@
                         <div class="colors">
                             <button class="colorBtn" id="red"></button>
                             <button class="colorBtn" id="blue"></button>
-                            <button class="colorBtn" id="purple"></button>
+                            <button class="colorBtn" id="pink"></button>
                             <button class="colorBtn" id="orange"></button>
                             <button class="colorBtn" id="green"></button>
+                            <button class="colorBtn" id="lilac"></button>
+                            <button class="colorBtn" id="yellow"></button>
                         </div>
                         <button monthId="`+monthName+`-`+year+`" class="create-button">Criar</button>
                     </div>
@@ -206,19 +208,25 @@
                 colors.forEach(color => {
                     switch (color) {
                         case 'red':
-                            $('<span id="red">(Recesso Acadêmico e Administrativo)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="red">(Fisiopatologia)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'blue':
-                            $('<span id="blue">(Cursos Presenciais)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="blue">(Tecnologia dos Alimentos)</span>').appendTo('.annotation[id='+id+']')
                             break;
-                        case 'purple':
-                            $('<span id="purple">(Cursos EaD)</span>').appendTo('.annotation[id='+id+']')
+                        case 'pink':
+                            $('<span id="pink">(Análise e Planejamento Dietético)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'orange':
-                            $('<span id="orange">(Recesso Acadêmico)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="orange">(Metodologia da Pesquisa Científica)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'green':
-                            $('<span id="green">(Atividades Acadêmicas e Administrativas)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="green">(Alimentos Funcionais no Exercício)</span>').appendTo('.annotation[id='+id+']')
+                            break;
+                        case 'lilac':
+                            $('<span id="lilac">(Nutrição Pediátrica e Hebiátrica)</span>').appendTo('.annotation[id='+id+']')
+                            break;
+                        case 'yellow':
+                            $('<span id="orange">(Modelos de Atenção)</span>').appendTo('.annotation[id='+id+']')
                             break;
                     }
                 });
@@ -255,14 +263,22 @@
                         case 'blue':
                             color = '#5c6bc0';
                             break;
-                        case 'purple':
-                            color = '#ab47bc';
+                        case 'pink':
+                            color = '#f06292';
                             break;
                         case 'orange':
                             color = '#ff9800';
                             break;
                         case 'green':
                             color = '#4caf50';
+                            break;
+                        case 'lilac':
+                            color = '#d1c4e9';
+                            td.css('color', '#404040')
+                            break;
+                        case 'yellow':
+                            color = '#ffeb3b';
+                            td.css('color', '#404040')
                             break;
                     }
                     td.css('background-color', color)
