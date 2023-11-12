@@ -194,9 +194,11 @@
             month.find('.selectedDays').html('');
         })
 
+        var annotationOrderList = [];
         var createNewAnnotation = function(month, days, text, colors, id) {
+            const firstDay = (days.split(', '))[0];
             $(`
-                <div id="`+id+`" colors="`+colors+`" class="annotation">
+                <div style="order: `+firstDay+`;" id="`+id+`" colors="`+colors+`" class="annotation">
                     <h3>`+days+`</h3>
                     <p>`+text+`</p>
                     <button class="deleteAnnotation">X</button>
@@ -309,7 +311,7 @@
     var loadAnnotations = function() {
         for (var i = 0; i < localStorage.length; i++){
             var annotation = JSON.parse(localStorage.getItem(localStorage.key(i)))
-            
+
             createNewAnnotation(
                 $('.month#'+annotation['monthId']),
                 annotation['days'],
