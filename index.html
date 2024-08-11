@@ -56,14 +56,13 @@
                         <textarea class="annotationText" type="text" placeholder="Nova anotação..."></textarea>
                         <h4>Escolha uma cor</h4>
                         <div class="colors">
-                            <button class="colorBtn" id="red"><tooltip>Avaliação e Diagnósticos em Nutrição do Adulto</tooltip></button>
-                            <button class="colorBtn" id="blue"><tooltip>Gestão de Unidades de Alimentação e Nutrição</tooltip></button>
-                            <button class="colorBtn" id="pink"><tooltip>Planejamento Físico de Cozinhas Profissionais</tooltip></button>
-                            <button class="colorBtn" id="orange"><tooltip>Farmacologia em Nutrição Clínica</tooltip></button>
-                            <button class="colorBtn" id="green"><tooltip>Determinantes Nutricionais do Envelhecimento</tooltip></button>
-                            <button class="colorBtn" id="lilac"><tooltip>Nutrição Baseada em Evidências</tooltip></button>
-                            <button class="colorBtn" id="yellow"><tooltip>Estratégias de Educação Alimentar</tooltip></button>
-                            <button class="colorBtn" id="wine"><tooltip>Bioética</tooltip></button>
+                            <button class="colorBtn" id="red"><tooltip>Nutrição em Saúde Coletiva</tooltip></button>
+                            <button class="colorBtn" id="blue"><tooltip>Terapia Nutricional</tooltip></button>
+                            <button class="colorBtn" id="pink"><tooltip>Microbiota e Microbioma Intestinal</tooltip></button>
+                            <button class="colorBtn" id="orange"><tooltip>Dietoterapia</tooltip></button>
+                            <button class="colorBtn" id="green"><tooltip>Nutrição e Atividade Física</tooltip></button>
+                            <button class="colorBtn" id="lilac"><tooltip>Projeto Integrador: Assistência Nutricional</tooltip></button>
+                            <button class="colorBtn" id="yellow"><tooltip>Marketing</tooltip></button>
                         </div>
                         <button monthId="`+monthName+`-`+year+`" class="create-button">Criar</button>
                     </div>
@@ -212,28 +211,25 @@
                 colors.forEach(color => {
                     switch (color) {
                         case 'red':
-                            $('<span id="red">(Avaliação e Diagnósticos em Nutrição do Adulto)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="red">(Nutrição em Saúde Coletiva)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'blue':
-                            $('<span id="blue">(Gestão de Unidades de Alimentação e Nutrição)</span>').appendTo('.annotation[id='+id+']')
-                            break;
-                        case 'pink':
-                            $('<span id="pink">(Planejamento Físico de Cozinhas Profissionais)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="blue">(Terapia Nutricional)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'orange':
-                            $('<span id="orange">(Farmacologia em Nutrição Clínica)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="pink">(Microbiota e Microbioma Intestinal)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'green':
-                            $('<span id="green">(Determinantes Nutricionais do Envelhecimento)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="orange">(Dietoterapia)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'lilac':
-                            $('<span id="lilac">(Nutrição Baseada em Evidências)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="green">(Nutrição e Atividade Física)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'yellow':
-                            $('<span id="yellow">(Estratégias de Educação Alimentar)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="lilac">(Projeto Integrador: Assistência Nutricional)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'wine':
-                            $('<span id="wine">(Bioética)</span>').appendTo('.annotation[id='+id+']')
+                            $('<span id="yellow">(Marketing)</span>').appendTo('.annotation[id='+id+']')
                             break;
                     }
                 });
@@ -338,7 +334,6 @@
         localStorage.removeItem(annotationId)
         location.reload()
     }
-
     </script>
 </body>
 </html>
