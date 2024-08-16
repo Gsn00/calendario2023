@@ -255,6 +255,16 @@
                 var td = calendar.find('tbody td[day='+day+']')
                 td.css('font-weight', 'bold').css('border', '2px solid #404040')
 
+                var hexColors = new Map();
+                hexColors.set('red', '#ef5350')
+                hexColors.set('blue', '#5c6bc0')
+                hexColors.set('pink', '#f06292')
+                hexColors.set('orange', '#ff9800')
+                hexColors.set('green', '#4caf50')
+                hexColors.set('lilac', '#d1c4e9')
+                hexColors.set('yellow', '#e2ce18')
+                hexColors.set('wine', '#722F37')
+
                 if (colors.length > 0 && colors[0] != '') {
                     td.css('color', 'white')
                     var color = '';
@@ -288,7 +298,13 @@
                             td.css('color', '#722F37')
                             break;
                     }
-                    td.css('background-color', color)
+                    td.css('background', color)
+                    if (colors.length > 1) {
+                        var color0 = hexColors.get(colors[0])
+                        var color1 = hexColors.get(colors[1])
+                        td.css('background', 'linear-gradient(135deg, '+color0+' 45%, '+color1+' 55%)')
+                        td.css('color', 'white')
+                    }
                 }
             });
         })
