@@ -246,6 +246,7 @@
     var refreshCalendar = function(month) {
         const calendar = month.find('.tb-calendar')
         var annotations = month.find('.annotation')
+        var busyDays = new Map()
 
         annotations.each(function(index) {
             const annotation = $(this)
@@ -302,12 +303,29 @@
                     if (colors.length > 1) {
                         var color0 = hexColors.get(colors[0])
                         var color1 = hexColors.get(colors[1])
-                        td.css('background', 'linear-gradient(135deg, '+color0+' 45%, '+color1+' 55%)')
+                        td.css('background', 'linear-gradient(135deg, '+color0+' 42%, '+color1+' 58%)')
                         td.css('color', 'white')
                     }
+
+                    if (!busyDays.has(day)) {
+                        busyDays.set(day, [])
+                    }
+                    let array = busyDays.get(day)
+                    array.push(color)
+                    busyDays.set(day, array)
                 }
             });
         })
+
+        for (let [key, value] of busyDays) {
+            if (busyDays.get(key).length > 1) {
+                var currentDay = calendar.find('tbody td[day='+key+']')
+                var color0 = busyDays.get(key)[0]
+                var color1 = busyDays.get(key)[1]
+                currentDay.css('background', 'linear-gradient(135deg, '+color0+' 42%, '+color1+' 58%)')
+                currentDay.css('color', 'white')
+            }
+        }
     }
 
     var refreshAllCalendars = function() {
