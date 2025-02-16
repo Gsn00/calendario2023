@@ -99,6 +99,13 @@
         createMonth(2024, 11, 'Novembro')
         createMonth(2024, 12, 'Dezembro')
 
+        createMonth(2025, 2, 'Fevereiro')
+        createMonth(2025, 3, 'Março')
+        createMonth(2025, 4, 'Abril')
+        createMonth(2025, 5, 'Maio')
+        createMonth(2025, 6, 'Junho')
+        createMonth(2025, 7, 'Julho')
+
         var selectedDays = new Map()
 
         $('body').on('click', '.tb-calendar tbody td', (event)=>{
@@ -345,6 +352,15 @@
             'text': text
         }
         localStorage.setItem(annotationId, JSON.stringify(annotation))
+
+        var divContents = $(".container").html();
+        var printWindow = window.open('', '', 'height=400,width=800');
+        printWindow.document.write('<html><head><title>DIV Contents</title>');
+        printWindow.document.write('</head><body >');
+        printWindow.document.write(divContents);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+        printWindow.print();
     }
 
     var loadAnnotations = function() {
