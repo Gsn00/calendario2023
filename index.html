@@ -56,9 +56,11 @@
                         <textarea class="annotationText" type="text" placeholder="Nova anotação..."></textarea>
                         <h4>Escolha uma cor</h4>
                         <div class="colors">
-                            <button class="colorBtn" id="red"><tooltip>Garantia da Qualidade Biológica de Alimentos</tooltip></button>
+                            <button class="colorBtn" id="brown"><tooltip>Garantia da Qualidade Biológica de Alimentos</tooltip></button>
                             <button class="colorBtn" id="blue"><tooltip>Nutrição em Obstetrícia e Lactação</tooltip></button>
                             <button class="colorBtn" id="pink"><tooltip>Bioética</tooltip></button>
+                            <button class="colorBtn" id="green"><tooltip>GQBA EaD</tooltip></button>
+                            <button class="colorBtn" id="lilac"><tooltip>Prática GQBA</tooltip></button>
                         </div>
                         <button monthId="`+monthName+`-`+year+`" class="create-button">Criar</button>
                     </div>
@@ -207,14 +209,20 @@
             if (colors.length > 0 && colors[0] != '') {
                 colors.forEach(color => {
                     switch (color) {
-                        case 'red':
-                            $('<span id="red">(Garantia da Qualidade Biológica de Alimentos)</span>').appendTo('.annotation[id='+id+']')
+                        case 'brown':
+                            $('<span id="brown">(Garantia da Qualidade Biológica de Alimentos)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'blue':
                             $('<span id="blue">(Nutrição em Obstetrícia e Lactação)</span>').appendTo('.annotation[id='+id+']')
                             break;
                         case 'pink':
                             $('<span id="pink">(Bioética)</span>').appendTo('.annotation[id='+id+']')
+                            break;
+                        case 'green':
+                            $('<span id="green">(Nutrição em Obstetrícia e Lactação)</span>').appendTo('.annotation[id='+id+']')
+                            break;
+                        case 'lilac':
+                            $('<span id="lilac">(Bioética)</span>').appendTo('.annotation[id='+id+']')
                             break;
                     }
                 });
@@ -246,10 +254,11 @@
                 hexColors.set('blue', '#5c6bc0')
                 hexColors.set('pink', '#f06292')
                 hexColors.set('orange', '#ff9800')
-                hexColors.set('green', '#4caf50')
+                hexColors.set('green', '#aadf47')
                 hexColors.set('lilac', '#d1c4e9')
                 hexColors.set('yellow', '#e2ce18')
                 hexColors.set('wine', '#722F37')
+                hexColors.set('brown', '#534648')
 
                 if (colors.length > 0 && colors[0] != '') {
                     td.css('color', 'white')
@@ -269,7 +278,7 @@
                             color = '#ff9800';
                             break;
                         case 'green':
-                            color = '#4caf50';
+                            color = '#aadf47';
                             break;
                         case 'lilac':
                             color = '#d1c4e9';
@@ -283,12 +292,23 @@
                             color = '#722F37';
                             td.css('color', '#722F37')
                             break;
+                        case 'brown':
+                            color = '##534648';
+                            td.css('color', '##534648')
+                            break;
                     }
                     td.css('background', color)
-                    if (colors.length > 1) {
+                    if (colors.length == 2) {
                         var color0 = hexColors.get(colors[0])
                         var color1 = hexColors.get(colors[1])
-                        td.css('background', 'linear-gradient(135deg, '+color0+' 42%, '+color1+' 58%)')
+                        td.css('background', 'linear-gradient(135deg, '+color0+' 46%, '+color1+' 54%)')
+                        td.css('color', 'white')
+                    }
+                    if (colors.length == 3) {
+                        var color0 = hexColors.get(colors[0])
+                        var color1 = hexColors.get(colors[1])
+                        var color2 = hexColors.get(colors[2])
+                        td.css('background', 'linear-gradient(135deg, '+color0+' 32%, '+color1+' 38%, '+color1+' 60%, '+color2+' 67%)')
                         td.css('color', 'white')
                     }
 
