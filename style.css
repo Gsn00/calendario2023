@@ -226,8 +226,8 @@ body {
           margin: 15px 0; }
           .main .month .div-table table tr td {
             font-size: 18px !important;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             margin: 0 12px;
             border-radius: 50%;
             display: flex;
