@@ -63,7 +63,7 @@ body {
           .main .month .tb-todo .annotation span#wine {
             color: #722F37; }
           .main .month .tb-todo .annotation span#brown {
-            color: #534648; }
+            color: #836f72; }
         .main .month .tb-todo .annotation .deleteAnnotation {
           width: 20px !important;
           height: 20px !important;
@@ -182,8 +182,8 @@ body {
               background-color: #722F37;
               box-shadow: 0px 0px 5px #722F37; }
             .main .month .div-table .create-annotation .colors button#brown {
-              background-color: #534648;
-              box-shadow: 0px 0px 5px #534648; }
+              background-color: #836f72;
+              box-shadow: 0px 0px 5px #836f72; }
             .main .month .div-table .create-annotation .colors button tooltip {
               visibility: hidden;
               width: 120px;

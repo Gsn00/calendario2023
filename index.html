@@ -258,7 +258,7 @@
                 hexColors.set('lilac', '#d1c4e9')
                 hexColors.set('yellow', '#e2ce18')
                 hexColors.set('wine', '#722F37')
-                hexColors.set('brown', '#534648')
+                hexColors.set('brown', '#836f72')
 
                 if (colors.length > 0 && colors[0] != '') {
                     td.css('color', 'white')
@@ -293,8 +293,8 @@
                             td.css('color', '#722F37')
                             break;
                         case 'brown':
-                            color = '##534648';
-                            td.css('color', '##534648')
+                            color = '#836f72';
+                            td.css('color', '#836f72')
                             break;
                     }
                     td.css('background', color)
@@ -308,6 +308,7 @@
                         var color0 = hexColors.get(colors[0])
                         var color1 = hexColors.get(colors[1])
                         var color2 = hexColors.get(colors[2])
+                        
                         td.css('background', 'linear-gradient(135deg, '+color0+' 32%, '+color1+' 38%, '+color1+' 60%, '+color2+' 67%)')
                         td.css('color', 'white')
                     }
