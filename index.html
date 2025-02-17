@@ -258,7 +258,7 @@
                 hexColors.set('lilac', '#d1c4e9')
                 hexColors.set('yellow', '#e2ce18')
                 hexColors.set('wine', '#722F37')
-                hexColors.set('brown', '#836f72')
+                hexColors.set('brown', '#b7853c')
 
                 if (colors.length > 0 && colors[0] != '') {
                     td.css('color', 'white')
@@ -293,7 +293,7 @@
                             td.css('color', '#404040')
                             break;
                         case 'brown':
-                            color = '#836f72';
+                            color = '#b7853c';
                             break;
                     }
                     td.css('background', color)
@@ -323,11 +323,19 @@
         })
 
         for (let [key, value] of busyDays) {
-            if (busyDays.get(key).length > 1) {
+            if (busyDays.get(key).length == 2) {
                 var currentDay = calendar.find('tbody td[day='+key+']')
                 var color0 = busyDays.get(key)[0]
                 var color1 = busyDays.get(key)[1]
-                currentDay.css('background', 'linear-gradient(135deg, '+color0+' 42%, '+color1+' 58%)')
+                currentDay.css('background', 'linear-gradient(135deg, '+color0+' 46%, '+color1+' 54%)')
+                currentDay.css('color', 'white')
+            }
+            if (busyDays.get(key).length == 3) {
+                var currentDay = calendar.find('tbody td[day='+key+']')
+                var color0 = busyDays.get(key)[0]
+                var color1 = busyDays.get(key)[1]
+                var color2 = busyDays.get(key)[2]
+                currentDay.css('background', 'linear-gradient(135deg, '+color0+' 32%, '+color1+' 38%, '+color1+' 60%, '+color2+' 67%)')
                 currentDay.css('color', 'white')
             }
         }
